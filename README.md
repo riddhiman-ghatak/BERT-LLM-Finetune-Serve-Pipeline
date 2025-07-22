@@ -1,34 +1,69 @@
+
 # BERT-LLM Classification Fine-Tuning and Serving Pipeline
 
+This repository provides a complete pipeline for fine-tuning a BERT-based large language model (LLM) on a classification task and serving the trained model for inference. The project is designed to be flexible and can be run locally or adapted for cloud workflows.
 
-<a target="_blank" href="https://colab.research.google.com/github/unionai-oss/bert-llm-classification-pipeline/blob/main/tutorial.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
+## Features
+- End-to-end pipeline for text classification using BERT or similar LLMs
+- Modular code for data loading, model training, and inference
+- Example notebook for interactive experimentation
+- CLI support for training and serving
 
-This repository contains a pipeline for fine-tuning a BERT-LLM model on a classification task and serving the model using the Union AI workflow and inference platform. 
+## Getting Started
 
-## Project Setup
-The quickest way to setup and the run the tutorial notebook is often using a hosted notebook, like Google colab.
-
-<a target="_blank" href="https://colab.research.google.com/github/unionai-oss/bert-llm-classification-pipeline/blob/main/tutorial.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
-
-Or you can follow the steps below to setup the project locally.
-
-### Sign up for a Union account
-Serverless is the easiest way to get started with Union. You can sign up for a free account and $30 of credit at [Union Serverless](https://signup.union.ai/?page=signup). BYOC (Bring Your Own Cloud) is also available for more features and advanced users. [Schedule a demo](https://www.union.ai/contact) to learn more about Union BYOC.
-
-- Union Serverless Sign-up: https://www.union.ai/ (Click login and then Sign up)
-- Union BYOC: https://docs.union.ai/byoc/user-guide/union-overview#union-byoc
-
-Read more in the overview of Union Serverless and Union BYOC.
-
-### Clone the repository
+### Clone the Repository
 ```bash
-git clone https://github.com/unionai-oss/bert-llm-classification-pipeline
-cd bert-llm-classification-pipeline
+git clone <your-repo-url>
+cd BERT-LLM-Finetune-Serve-Pipeline
 ```
+
+### Install Dependencies
+Install the required Python packages:
+```bash
+pip install -r requirements.txt
+```
+
+### Run the Tutorial Notebook
+You can explore the pipeline and experiment interactively using the provided Jupyter notebook:
+```bash
+jupyter notebook tutorial.ipynb
+```
+
+## Usage
+
+### Training the Model
+To train the model from the command line, run:
+```bash
+# Example: Train with 3 epochs and full fine-tuning
+python workflows/train_pipeline.py --epochs 3 --tuning_method full
+```
+You can adjust the arguments as needed (see the script for available options).
+
+### Serving the Model
+To serve the trained model for inference:
+```bash
+python app.py
+```
+This will start a local server (see `app.py` for details on endpoints and usage).
+
+## Project Structure
+
+- `app.py` - Script to serve the trained model via an API
+- `tasks/` - Modules for data handling, model definition, and inference logic
+- `workflows/` - Training and batch inference pipelines
+- `tutorial.ipynb` - Interactive notebook for step-by-step guidance
+- `requirements.txt` - List of required Python packages
+
+## Customization
+- You can modify the data loading and preprocessing logic in `tasks/data.py`.
+- Model architecture and training parameters can be adjusted in `tasks/model.py` and `workflows/train_pipeline.py`.
+- Inference logic can be customized in `tasks/inference.py` and `app.py`.
+
+## License
+This project is licensed under the terms of the LICENSE file in this repository.
+
+## Acknowledgements
+This project is inspired by best practices in NLP model fine-tuning and serving. See the notebook and code comments for further references.
 
 ### Install dependencies
 ```bash
